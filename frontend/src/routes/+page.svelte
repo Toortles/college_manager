@@ -1,1 +1,5 @@
-<h1>Hi, how's it going world?</h1>
+<script lang="ts">
+    import '../app.css';
+    import { page } from "$app/state";
+
+</script>
