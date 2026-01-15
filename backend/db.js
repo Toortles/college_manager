@@ -48,7 +48,7 @@ function initDatabase() {
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 description TEXT NOT NULL,
                 amount DECIMAL(10,2) NOT NULL,
-                paid_by INTEGER,! 
+                paid_by INTEGER, 
                 date DATE NOT NULL,
                 category TEXT,
                 created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -59,7 +59,7 @@ function initDatabase() {
         // Expenses split
         db.run(`
             CREATE TABLE IF NOT EXISTS expense_splits (
-                id INTEGERE PRIMARY KEY AUTOINCREMENT,
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
                 expense_id INTEGER NOT NULL,
                 member_id INTEGER NOT NULL,
                 amount DECIMAL(10,2) NOT NULL,
