@@ -21,7 +21,6 @@ function initDatabase() {
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 name TEXT NOT NULL,
                 color TEXT DEFAULT '#3B82F6',
-                has_paid BOOLEAN DEFAULT 0,
                 is_admin BOOLEAN DEFAULT 0,
                 created_at DATETIME DEFAULT CURRENT_TIMESTAMP
             )    
@@ -49,9 +48,11 @@ function initDatabase() {
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 description TEXT NOT NULL,
                 amount DECIMAL(10,2) NOT NULL,
+                paid_by INTEGER,! 
                 date DATE NOT NULL,
                 category TEXT,
-                created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+                created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+                FOREIGN KEY (paid_by) REFERENCES members(id)
             )
         `);
 
@@ -98,3 +99,29 @@ function run (sql, params = []) {
         });
     });
 }
+
+function get(sql, params = []) {
+    return new Promise((resolve, reject) => {
+        db.get(sql, params, (err, row) => {
+            if (err) reject(err);
+            else resolve(row);
+        });
+    });
+}
+
+function all(sql, params = []) {
+    return new Promise((resolve, reject) => {
+        db.all(sql, params, (err, rows) => {
+            if (err) reject(err);
+            else resolve(rows);
+        });
+    });
+}
+
+module.exports = {
+    db,
+    initDatabase,
+    run,
+    get,
+    all
+};
