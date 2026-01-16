@@ -17,6 +17,8 @@
 	<link rel="icon" href={favicon} />
 </svelte:head>
 
-<Sidebar />
-
-{@render children()}
+<div class="flex">
+	<Sidebar />
+	
+	{@render children()}
+</div>
